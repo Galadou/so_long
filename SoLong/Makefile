@@ -8,10 +8,18 @@ SRC		= main.c\
 		map_to_tab.c\
 		map_transform.c\
 		define_struct.c\
-		put_img_base.c\
-		put_or_destroy_img.c\
+		put_asked_img.c\
+		destroy_img.c\
 		action_touch.c\
-		light_front.c
+		light_front.c\
+		light_hide.c\
+		is_obj_here.c\
+		is_exit_here.c\
+		more_fonction.c\
+		Monster.c\
+		m_coilhead_moove.c\
+		update_coilhead.c\
+		kill_player.c
 
 #Les verifications
 SRC+=	verif_a_map.c\

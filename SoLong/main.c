@@ -6,7 +6,7 @@
 /*   By: gmersch <gmersch@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/26 16:05:03 by gmersch           #+#    #+#             */
-/*   Updated: 2024/02/04 20:51:48 by gmersch          ###   ########.fr       */
+/*   Updated: 2024/02/14 16:38:57 by gmersch          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,51 +24,50 @@ int is_2_argc(int argc)
 
 int main(int argc, char **argv)
 {
-	size_t l;
-	size_t c;
 	int i;
 	t_coordinates coordinates;
 
-	l = 0;
-	c = 0;
+	coordinates.l = 0;
+	coordinates.c = 0;
 	if (is_2_argc(argc) == 0)
 		return (0);
-	if (verif_map(argv[1], &l, &c) == 0) // map valid ?
+	if (verif_map(argv[1], &coordinates.l, &coordinates.c, &coordinates) == 0) // map valid ?
 	    return (0);
-	coordinates.tab.tab_0_1 = tab_creator(argv[1], l, c);
-	coordinates.tab.tab_tiles = tab_creator(argv[1], l, c);
-	
+	define_tab(&coordinates, argv);
+
 	tab_transform_for_tiles(coordinates.tab.tab_tiles);
+	tab_transform_for_exit(coordinates.tab.tab_0_1);
 
 	/*int j;
 	i = 0;
-	 while (tab_0_1[i])
+	 while (coordinates.tab.tab_dup[i])
     {
         j = 0;
-        while (tab_0_1[i][j])
+        while (coordinates.tab.tab_dup[i][j])
         {
-           ft_printf("%c", tab_0_1[i][j]);
+           ft_printf("%c", coordinates.tab.tab_dup[i][j]);
            j++;
         }
         ft_printf("\n");
         i++;
     }
-	ft_printf("\n");
-	i = 0;
-	 while (tab_tiles[i])
+	ft_printf("\n");*/
+	/*i = 0;
+	 while (coordinates.tab.tab_tiles[i])
     {
         j = 0;
-        while (tab_tiles[i][j])
+        while (coordinates.tab.tab_tiles[i][j])
         {
-           ft_printf("%c", tab_tiles[i][j]);
+           ft_printf("%c", coordinates.tab.tab_tiles[i][j]);
            j++;
         }
         ft_printf("\n");
         i++;
     }*/
-	
-	window_view_and_game(l, c, coordinates);
-	
+
+	//a enlever ;
+	window_view_and_game(coordinates);
+
    /* i = 0;
     while (tab[i])
     {

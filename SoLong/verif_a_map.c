@@ -6,30 +6,29 @@
 /*   By: gmersch <gmersch@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/26 14:42:12 by gmersch           #+#    #+#             */
-/*   Updated: 2024/02/02 15:01:38 by gmersch          ###   ########.fr       */
+/*   Updated: 2024/02/06 17:35:24 by gmersch          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "header.h"
 
-int verif_map(char *map_ber, size_t *l, size_t *c)
+int verif_map(char *map_ber, size_t *l, size_t *c, t_coordinates *coordinates)
 {
     char **tab_dup;
     int i;
-    int C; //nombre d'objet dans la map
 
     *l = 0;
     *c = 0;
-    C = 0;
-    
-    
-        
+    coordinates->nb_obj_in = 0;
+
+
+
     if (is_dotber(map_ber) == 0)//est ce aue c'est un .ber
 	{
 		ft_printf("Error\nThe map is not in format '.ber'");
 		return (0);
 	}
-    
+
     if (verif_rectangle(map_ber, l, c) == 0) //est ce aue c'est un rectangle et recup la longueur et hauteur
     {
         ft_printf("Error\nThe map is not a rectangle");
@@ -48,7 +47,7 @@ int verif_map(char *map_ber, size_t *l, size_t *c)
         return (0);
     }
 
-    if (verif_one_and_zero(tab_dup, *l, *c, &C) == 0) // on verifie si y'a bien que des 0, 1 etc en fonction de la consigne
+    if (verif_one_and_zero(tab_dup, *l, *c, &coordinates->nb_obj_in) == 0) // on verifie si y'a bien que des 0, 1 etc en fonction de la consigne
     {
         ft_printf("Error\nMap does not only contain “0”, “1”, “E”, “P” or “C” and need to be closed only by '1'.");
         i = 0;
@@ -61,7 +60,7 @@ int verif_map(char *map_ber, size_t *l, size_t *c)
         return (0);
     }
 
-    if (verif_player_can_exit(tab_dup, C) == 0)
+    if (verif_player_can_exit(tab_dup, coordinates->nb_obj_in) == 0)
     {
         ft_printf("Error\nExit or loot are not reachable for the player");
         i = 0;
