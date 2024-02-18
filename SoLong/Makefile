@@ -16,10 +16,11 @@ SRC		= main.c\
 		is_obj_here.c\
 		is_exit_here.c\
 		more_fonction.c\
-		Monster.c\
+		m_monster.c\
 		m_coilhead_moove.c\
-		update_coilhead.c\
-		kill_player.c
+		m_update_coilhead.c\
+		kill_player.c\
+		action_touch_windows_change.c
 
 #Les verifications
 SRC+=	verif_a_map.c\

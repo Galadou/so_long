@@ -48,11 +48,10 @@ void game(t_coordinates coordinates)
 	define_player_look(&coordinates);
 	coordinates.player_look.left = 1;
 	//on fait les event enfonction des touches
+
 	mlx_on_event(coordinates.mlx, coordinates.win, MLX_KEYDOWN, key_hook, &coordinates);
 	mlx_on_event(coordinates.mlx, coordinates.win, MLX_WINDOW_EVENT, window_hook, &coordinates);
 	mlx_loop_hook(coordinates.mlx, update, &coordinates);
-
-
 
 	mlx_loop(coordinates.mlx);
 }
@@ -60,7 +59,7 @@ void game(t_coordinates coordinates)
 int window_view_and_game(t_coordinates coordinates)
 {
 	coordinates.mlx = mlx_init();
-	coordinates.win = mlx_new_window(coordinates.mlx, 64 * coordinates.c, 64 * coordinates.l, "So_Long");
+	coordinates.win = mlx_new_window(coordinates.mlx, 64 * coordinates.c, 64 * coordinates.l + 64, "So_Long");
 
 	//on defini les images
 	define_img(coordinates.img_height,coordinates.img_width, &coordinates.tiles, coordinates);
@@ -71,6 +70,7 @@ int window_view_and_game(t_coordinates coordinates)
 	define_monster(&coordinates);
 	//on affiche les image de base
 	put_img_base(&coordinates, coordinates.tiles);
+	put_shadow(coordinates);
 	//on initialise le joueur et les case devant lui
 	init_player(coordinates.tab.tab_0_1, &coordinates, coordinates.tiles);
 

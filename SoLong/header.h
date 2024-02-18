@@ -81,6 +81,7 @@ typedef struct s_tiles
 	void*	hall_n;
 	void*	wall;
 	void*	shadow;
+	void*	hall_hide;
 
 	void*	exit_door_close;
 	void*	exit_door_open;
@@ -174,6 +175,11 @@ typedef struct coordinates
 
 	int i;
 	int mid_second;
+	int	player_dead;
+	//nb de pas
+	char *string_count_moove;
+	int	nb_moove;
+	//count_
 }	t_coordinates;
 
 void	game(t_coordinates coordinates);
@@ -182,6 +188,7 @@ char	**tab_creator(char *map_ber, int l, int c);
 void	define_tab(t_coordinates *coordinates, char **argv);
 void	tab_transform_for_tiles(char **tab);
 void	tab_transform_for_exit(char **tab);
+void	number_to_string(int n, t_coordinates *coordinates);
 
 //Les verifications
 int verif_map(char *map_ber, size_t *l, size_t *c, t_coordinates *coordinates);
@@ -212,9 +219,20 @@ void tab_reset(char **dest, char **src);
 
 
 //fermeture de la fenetre
+
 int		key_hook(int key, void* param);
+void	key_hook_close(int key, t_coordinates *coordinates);
+void	key_hook_look(int key, t_coordinates *coordinates);
+void	key_hook_move(int key, t_coordinates *coordinates);
 int		window_hook(int event, void* param);
+
+void	playermove_p1(t_coordinates *coordinates);
+void	playermove_p2(t_coordinates *coordinates);
+void	playersee_p1(t_coordinates *coordinates);
+void	playersee_p2(t_coordinates *coordinates);
+
 int		update(void* param);
+
 void	put_asked_image(char **tab_tiles, t_coordinates coordinates, t_tiles tiles);
 void	put_asked_hero(t_coordinates *coordinates);
 void	put_asked_object(t_coordinates coordinates);

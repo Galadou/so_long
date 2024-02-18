@@ -2,9 +2,9 @@
 
 void    define_img(int img_height, int img_width, t_tiles *tiles, t_coordinates coordinates)
 {
-    tiles->hall_H = mlx_png_file_to_image(coordinates.mlx, "tiles/front_back/hall_H.png", &img_width, &img_height);
-    tiles->hall_Z = mlx_png_file_to_image(coordinates.mlx, "tiles/front_back/hall_Z.png", &img_width, &img_height);
-    tiles->hall_X = mlx_png_file_to_image(coordinates.mlx, "tiles/hall_O.png", &img_width, &img_height);
+	tiles->hall_H = mlx_png_file_to_image(coordinates.mlx, "tiles/front_back/hall_H.png", &img_width, &img_height);
+	tiles->hall_Z = mlx_png_file_to_image(coordinates.mlx, "tiles/front_back/hall_Z.png", &img_width, &img_height);
+	tiles->hall_X = mlx_png_file_to_image(coordinates.mlx, "tiles/hall_O.png", &img_width, &img_height);
 	tiles->hall_a = mlx_png_file_to_image(coordinates.mlx, "tiles/turn/hall_>.png", &img_width, &img_height);
 	tiles->hall_b = mlx_png_file_to_image(coordinates.mlx, "tiles/turn/hall_<.png", &img_width, &img_height);
 	tiles->hall_l = mlx_png_file_to_image(coordinates.mlx, "tiles/turn/hall_l.png", &img_width, &img_height);
@@ -17,8 +17,9 @@ void    define_img(int img_height, int img_width, t_tiles *tiles, t_coordinates 
 	tiles->hall_c_left = mlx_png_file_to_image(coordinates.mlx, "tiles/u/].png", &img_width, &img_height);
 	tiles->hall_c = mlx_png_file_to_image(coordinates.mlx, "tiles/u/c.png", &img_width, &img_height);
 	tiles->hall_n = mlx_png_file_to_image(coordinates.mlx, "tiles/u/n.png", &img_width, &img_height);
-    tiles->wall = mlx_png_file_to_image(coordinates.mlx, "tiles/wall.png", &img_width, &img_height);
+	tiles->wall = mlx_png_file_to_image(coordinates.mlx, "tiles/wall.png", &img_width, &img_height);
 	tiles->shadow = mlx_png_file_to_image(coordinates.mlx, "tiles/opacity.png", &img_width, &img_height);
+	tiles->hall_hide = mlx_png_file_to_image(coordinates.mlx, "tiles/hall_hide.png", &img_width, &img_height);
 }
 void    define_hero(int img_height, int img_width, t_tiles *tiles, t_coordinates coordinates)
 {
@@ -105,14 +106,12 @@ void define_count(t_coordinates *coordinates)
 		coordinates->coilhead.has_moove = 0;
 		coordinates->coilhead.frame = 0;
 		coordinates->coilhead.can_moove = 0;
-		/*
-		coordinates->coilhead.count_direction_up = 0;
-		coordinates->coilhead.count_direction_down = 0;
-		coordinates->coilhead.count_direction_left = 0;
-		coordinates->coilhead.count_direction_right = 0;*/
 		coordinates->one_time = 0;
 		coordinates->i = 0;
 		coordinates->mid_second = 0;
+		coordinates->player_dead = 0;
+		coordinates->nb_moove = 0;
+		coordinates->string_count_moove = "0";
 }
 /*void define_search_p(t_coordinates *coordinates)
 {

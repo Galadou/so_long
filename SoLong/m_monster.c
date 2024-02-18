@@ -46,42 +46,8 @@ static void where_coilhead_spawn_recursive(t_coordinates coordinates, t_coilhead
 
 void monster_spawn(t_coordinates *coordinates)
 {
-
-// qudn je fqis tqb = tqbcpy ca fais la dresse
-	/*int i;
-    int j;
-    ft_printf("\n");
-	i = 0;
-	 while (coordinates->tab.tab_dup_monsterspawn[i])
-    {
-        j = 0;
-        while (coordinates->tab.tab_dup_monsterspawn[i][j])
-        {
-           ft_printf("%c", coordinates->tab.tab_dup_monsterspawn[i][j]);
-           j++;
-        }
-        ft_printf("\n");
-        i++;
-    }
-    ft_printf("VOILA CELUI DANS MONSTERSPAWN\n");*/
-
-
 	where_coilhead_spawn_recursive(*coordinates, &coordinates->coilhead);
-	mlx_put_image_to_window(coordinates->mlx, coordinates->win, coordinates->tiles.m_coil_front, coordinates->tiles_x + (coordinates->coilhead.x * 64), coordinates->tiles_y + (coordinates->coilhead.y * 64));
+	//mlx_put_image_to_window(coordinates->mlx, coordinates->win, coordinates->tiles.m_coil_front, coordinates->tiles_x + (coordinates->coilhead.x * 64), coordinates->tiles_y + (coordinates->coilhead.y * 64));
 	coordinates->coilhead.last_seen_player_x = coordinates->coilhead.x;
 	coordinates->coilhead.last_seen_player_y = coordinates->coilhead.y;
-    /*ft_printf("\n");
-	i = 0;
-	 while (coordinates->tab.tab_dup_monsterspawn[i])
-    {
-        j = 0;
-        while (coordinates->tab.tab_dup_monsterspawn[i][j])
-        {
-           ft_printf("%c", coordinates->tab.tab_dup_monsterspawn[i][j]);
-           j++;
-        }
-        ft_printf("\n");
-        i++;
-    }
-    ft_printf("VOILA CELUI DANS MONSTERSPAWN MAIS JUSTE APRES\n");*/
 }
