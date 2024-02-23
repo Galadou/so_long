@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   define_tab.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: gmersch <marvin@42.fr>                     +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/02/23 07:23:55 by gmersch           #+#    #+#             */
+/*   Updated: 2024/02/23 07:23:56 by gmersch          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "header.h"
 
 static int	define_tab3(t_coord *c, char **argv)
@@ -45,7 +57,6 @@ static int	define_tab2(t_coord *c, char **argv)
 		return (0);
 	return (1);
 }
-
 
 int	define_tab(t_coord *c, char **argv)
 {
