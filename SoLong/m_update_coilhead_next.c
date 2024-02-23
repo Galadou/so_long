@@ -6,7 +6,7 @@
 /*   By: gmersch <gmersch@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/19 04:02:36 by gmersch           #+#    #+#             */
-/*   Updated: 2024/02/23 06:30:03 by gmersch          ###   ########.fr       */
+/*   Updated: 2024/02/23 17:47:37 by gmersch          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ static void	update_next_4(t_coord *co)
 {
 	if (co->times == co->times_buf + 2 && co->m_find_speed > 1)
 	{
-		co->mid_second = co->m_find_speed / 6;
+		co->mid_second = co->m_find_speed / 2;
 		co->m_speed = 1;
 	}
 	if (co->mid_second > 0)

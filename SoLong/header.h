@@ -6,7 +6,7 @@
 /*   By: gmersch <gmersch@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/19 06:37:26 by gmersch           #+#    #+#             */
-/*   Updated: 2024/02/23 07:13:06 by gmersch          ###   ########.fr       */
+/*   Updated: 2024/02/23 17:54:13 by gmersch          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@
 # include "libft/includes/libft.h"
 # include "libft/includes/ftprintf.h"
 
-//# include <stdlib.h>
 # include <SDL2/SDL.h>
 # include <time.h>
 

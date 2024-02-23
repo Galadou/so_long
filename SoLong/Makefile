@@ -34,7 +34,6 @@ SRC		= main.c\
 		kill_player.c\
 		action_touch_windows_change.c
 
-#Les verifications
 SRC+=	verif_a_map.c\
 		verif_if_dotber.c\
 		verif_rectangle.c\

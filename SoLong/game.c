@@ -6,7 +6,7 @@
 /*   By: gmersch <gmersch@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/18 22:08:46 by gmersch           #+#    #+#             */
-/*   Updated: 2024/02/21 17:05:26 by gmersch          ###   ########.fr       */
+/*   Updated: 2024/02/23 18:00:51 by gmersch          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ void	game(t_coord *c)
 int	window_view_and_game(t_coord *c)
 {
 	c->m = mlx_init();
-	c->w = mlx_new_window(c->m, 64 * c->c, 64 * c->l + 64, "So_Long");
+	c->w = mlx_new_window(c->m, 64 * c->c, 64 * c->l + 64, "so_long");
 	define_img(c);
 	def_hero(c);
 	define_object(c);
