@@ -1,7 +1,18 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   m_coilhead_moove.c                                 :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: gmersch <gmersch@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/02/19 02:32:56 by gmersch           #+#    #+#             */
+/*   Updated: 2024/02/23 06:33:36 by gmersch          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "header.h"
 
-
-void	is_coilhead_here(t_coordinates *coordinates, int y, int x)
+void	is_coilhead_here(t_coord *coordinates, int y, int x)
 {
 	if (coordinates->coilhead.x == x && coordinates->coilhead.y == y)
 	{
@@ -11,12 +22,14 @@ void	is_coilhead_here(t_coordinates *coordinates, int y, int x)
 		destroy_monster(coordinates);
 		define_monster(coordinates);
 		put_asked_coilhead(coordinates);
+		if (coordinates->coilhead.see_coilhead == 1 && \
+		coordinates->coilhead.has_moove == 1)
+			system("paplay --volume=65536 song/coilhead-stop.wav &");
 	}
 }
 
-void	coilhead_moove(t_coordinates *coordinates)
+void	coilhead_moove(t_coord *coordinates)
 {
-	//si lq derniere pos du joueur est en haut
 	if (coordinates->coilhead.last_seen_player_y < coordinates->coilhead.y)
 	{
 		coordinates->coilhead.y--;
@@ -39,100 +52,49 @@ void	coilhead_moove(t_coordinates *coordinates)
 		coordinates->coilhead.has_moove = 1;
 	}
 	else if (coordinates->coilhead.last_seen_player_x > coordinates->coilhead.x)
-	{
-		coordinates->coilhead.x++;
-		define_coilhead_go(coordinates);
-		coordinates->coilhead.go_right = 1;
-		coordinates->coilhead.has_moove = 1;
-	}
+		coilhead_moove_next(coordinates);
+	else
+		coordinates->coilhead.has_moove = 0;
 }
 
-void	head_moove_down(t_coordinates *coordinates)
+void	head_moove_down(t_coord *c)
 {
-	if (coordinates->coilhead.frame == 5 || (coordinates->coilhead.frame && coordinates->coilhead.see_coilhead == 0))
-		coordinates->coilhead.frame = 0;
-
-	if(coordinates->coilhead.has_moove == 1 && coordinates->coilhead.see_coilhead == 1)
+	if (c->coilhead.frame == 5 || (c->coilhead.frame && \
+	c->coilhead.see_coilhead == 0))
+		c->coilhead.frame = 0;
+	if (c->coilhead.has_moove == 1 && c->coilhead.see_coilhead == 1)
 	{
-		coordinates->coilhead.has_moove = 0;
-		coordinates->coilhead.frame++;
+		c->coilhead.has_moove = 0;
+		c->coilhead.frame++;
 	}
-
-
-	if (coordinates->coilhead.frame == 1)
+	if (c->coilhead.frame == 1)
 	{
-		destroy_monster(coordinates);
-		define_monster(coordinates);
-		mlx_put_image_to_window(coordinates->mlx, coordinates->win, coordinates->tiles.m_coil_front_left, coordinates->tiles_x + (coordinates->coilhead.x * 64), coordinates->tiles_y + (coordinates->coilhead.y * 64));
-		coordinates->coilhead.frame++;
-		//ft_printf("frame 1\n");
+		destroy_monster(c);
+		define_monster(c);
+		mlx_put_image_to_window(c->m, c->w, c->t.m_c_f_l, \
+		c->t_x + (c->coilhead.x * 64), c->t_y + (c->coilhead.y * 64));
+		c->coilhead.frame++;
 	}
-	else if (coordinates->coilhead.frame == 2 && coordinates->i == coordinates->mid_second / 2)
-	{
-		destroy_monster(coordinates);
-		define_monster(coordinates);
-		mlx_put_image_to_window(coordinates->mlx, coordinates->win, coordinates->tiles.m_coil_front, coordinates->tiles_x + (coordinates->coilhead.x * 64), coordinates->tiles_y + (coordinates->coilhead.y * 64));
-		coordinates->coilhead.frame++;
-		//ft_printf("frame 2\n");
-	}
-	else if (coordinates->coilhead.frame == 3 && coordinates->i == coordinates->mid_second - 1)
-	{
-		destroy_monster(coordinates);
-		define_monster(coordinates);
-		mlx_put_image_to_window(coordinates->mlx, coordinates->win, coordinates->tiles.m_coil_front_right, coordinates->tiles_x + (coordinates->coilhead.x * 64), coordinates->tiles_y + (coordinates->coilhead.y * 64));
-		coordinates->coilhead.frame++;
-		//ft_printf("frame 3\n");
-	}
-	else if (coordinates->coilhead.frame == 4 && coordinates->i == coordinates->mid_second / 3)
-	{
-		destroy_monster(coordinates);
-		define_monster(coordinates);
-		mlx_put_image_to_window(coordinates->mlx, coordinates->win, coordinates->tiles.m_coil_front, coordinates->tiles_x + (coordinates->coilhead.x * 64), coordinates->tiles_y + (coordinates->coilhead.y * 64));
-		coordinates->coilhead.frame++;
-		//ft_printf("frame 4\n");
-	}
+	head_moove_down_next(c);
 }
 
-void	head_moove_up(t_coordinates *coordinates)
+void	head_moove_up(t_coord *c)
 {
-	if (coordinates->coilhead.frame == 5 || (coordinates->coilhead.frame && coordinates->coilhead.see_coilhead == 0))
-		coordinates->coilhead.frame = 0;
-
-	if(coordinates->coilhead.has_moove == 1 && coordinates->coilhead.see_coilhead == 1)
+	if (c->coilhead.frame == 5 || (c->coilhead.frame && \
+	c->coilhead.see_coilhead == 0))
+		c->coilhead.frame = 0;
+	if (c->coilhead.has_moove == 1 && c->coilhead.see_coilhead == 1)
 	{
-		coordinates->coilhead.has_moove = 0;
-		coordinates->coilhead.frame++;
+		c->coilhead.has_moove = 0;
+		c->coilhead.frame++;
 	}
-	if (coordinates->coilhead.frame == 1)
+	if (c->coilhead.frame == 1)
 	{
-		destroy_monster(coordinates);
-		define_monster(coordinates);
-		mlx_put_image_to_window(coordinates->mlx, coordinates->win, coordinates->tiles.m_coil_back_left, coordinates->tiles_x + (coordinates->coilhead.x * 64), coordinates->tiles_y + (coordinates->coilhead.y * 64));
-		coordinates->coilhead.frame++;
-		//ft_printf("frame 1\n");
+		destroy_monster(c);
+		define_monster(c);
+		mlx_put_image_to_window(c->m, c->w, c->t.m_c_b_l, \
+		c->t_x + (c->coilhead.x * 64), c->t_y + (c->coilhead.y * 64));
+		c->coilhead.frame++;
 	}
-	else if (coordinates->coilhead.frame == 2 && coordinates->i == coordinates->mid_second / 2)
-	{
-		destroy_monster(coordinates);
-		define_monster(coordinates);
-		mlx_put_image_to_window(coordinates->mlx, coordinates->win, coordinates->tiles.m_coil_back, coordinates->tiles_x + (coordinates->coilhead.x * 64), coordinates->tiles_y + (coordinates->coilhead.y * 64));
-		coordinates->coilhead.frame++;
-		//ft_printf("frame 2\n");
-	}
-	else if (coordinates->coilhead.frame == 3 && coordinates->i == coordinates->mid_second - 1)
-	{
-		destroy_monster(coordinates);
-		define_monster(coordinates);
-		mlx_put_image_to_window(coordinates->mlx, coordinates->win, coordinates->tiles.m_coil_back_right, coordinates->tiles_x + (coordinates->coilhead.x * 64), coordinates->tiles_y + (coordinates->coilhead.y * 64));
-		coordinates->coilhead.frame++;
-		//ft_printf("frame 3\n");
-	}
-	else if (coordinates->coilhead.frame == 4 && coordinates->i == coordinates->mid_second / 3)
-	{
-		destroy_monster(coordinates);
-		define_monster(coordinates);
-		mlx_put_image_to_window(coordinates->mlx, coordinates->win, coordinates->tiles.m_coil_back, coordinates->tiles_x + (coordinates->coilhead.x * 64), coordinates->tiles_y + (coordinates->coilhead.y * 64));
-		coordinates->coilhead.frame++;
-		//ft_printf("frame 4\n");
-	}
+	head_moove_up_next(c);
 }

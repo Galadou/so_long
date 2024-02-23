@@ -1,52 +1,82 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   action_touch_windows_change.c                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: gmersch <gmersch@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/02/18 20:15:19 by gmersch           #+#    #+#             */
+/*   Updated: 2024/02/23 06:24:31 by gmersch          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "header.h"
 
-void	playersee_p1(t_coordinates *coordinates)
+void	playersee_p1(t_coord *coordinates)
 {
 	coordinates->coilhead.see_coilhead = 0;
-	if (coordinates->light == 1)
-		hide_tiles_light(coordinates);
-	put_shadow(*coordinates);
+	hide_tiles_light(coordinates);
+	put_shadow(coordinates);
 	define_player_look(coordinates);
 }
-void	playersee_p2(t_coordinates *coordinates)
+
+void	playersee_p2(t_coord *coord)
 {
-	destroy_hero(coordinates);
-	define_hero(coordinates->img_height,coordinates->img_width, &coordinates->tiles, *coordinates);
-	put_asked_hero(coordinates);
+	destroy_hero(coord);
+	def_hero(coord);
+	put_asked_hero(coord);
 }
 
-void	playermove_p1(t_coordinates *coordinates)
+void	playermove_p1(t_coord *c)
 {
-	mlx_put_image_to_window(coordinates->mlx, coordinates->win, coordinates->tiles.hall_hide, 64, 0);
-	coordinates->nb_moove++;
-	ft_printf("Nombres de pas = %d\n", coordinates->nb_moove);
-	coordinates->string_count_moove = ft_itoa(coordinates->nb_moove);
-	mlx_string_put(coordinates->mlx, coordinates->win, 70, 20, 0xF000F000, coordinates->string_count_moove);
-	free(coordinates->string_count_moove);
-	coordinates->coilhead.see_coilhead = 0;
-	put_asked_image(coordinates->tab.tab_tiles, *coordinates, coordinates->tiles);
-	if (coordinates->light == 1)
-		hide_tiles_light(coordinates);
-	put_shadow(*coordinates);
-}
-void	playermove_p2(t_coordinates *coordinates)
-{
-	can_i_exit(coordinates);
-	take_obj(coordinates);
-	destroy_hero(coordinates);
-	define_hero(coordinates->img_height,coordinates->img_width, &coordinates->tiles, *coordinates);
-	put_asked_hero(coordinates);
+	mlx_put_image_to_window(c->m, c->w, c->t.h, 0, 0);
+	mlx_put_image_to_window(c->m, c->w, c->t.h, 64, 0);
+	mlx_put_image_to_window(c->m, c->w, c->t.h, 128, 0);
+	mlx_put_image_to_window(c->m, c->w, c->t.h, 192, 0);
+	c->nb_moove++;
+	c->string_count_move = ft_itoa(c->nb_moove);
+	mlx_string_put(c->m, c->w, 0, 18, 0xF000F000, "Moove done = ");
+	mlx_string_put(c->m, c->w, 115, 18, 0xF000F000, c->string_count_move);
+	free(c->string_count_move);
+	c->coilhead.see_coilhead = 0;
+	mlx_put_image_to_window(c->m, c->w, c->t.w, c->x * 64, c->t_y + c->y * 64);
+	hide_tiles_light(c);
+	put_shadow(c);
 }
 
-void key_hook_close(int key, t_coordinates *coordinates)
+void	playermove_p2(t_coord *coord)
 {
-	if(key == 41) // 41 is the key code for escape
+	take_obj(coord);
+	destroy_hero(coord);
+	def_hero(coord);
+	put_asked_hero(coord);
+	coord->string_nb_obj_in = ft_itoa(coord->nb_obj_in - coord->nb_obj_take);
+	mlx_string_put(coord->m, coord->w,
+		0, 34, 0xF000F000, "Loot remaining = ");
+	mlx_string_put(coord->m, coord->w, 140, 34,
+		0xF000F000, coord->string_nb_obj_in);
+	free(coord->string_nb_obj_in);
+	mlx_string_put(coord->m, coord->w,
+		0, 50, 0xF000F000, "Bonus loot collected = ");
+	coord->string_bearkorgeister = ft_itoa(coord->bearkorgeister);
+	mlx_string_put(coord->m, coord->w,
+		192, 50, 0xF000F000, coord->string_bearkorgeister);
+	free(coord->string_bearkorgeister);
+	mlx_string_put(coord->m, coord->w,
+		200, 50, 0xF000F000, " / 1");
+	can_i_exit(coord);
+	m_search_player(coord);
+}
+
+void	key_hook_close(int key, t_coord *coordinates)
+{
+	if (key == 41)
 	{
 		destroy_hero(coordinates);
 		destroy_object(coordinates);
-		destroy_img(&coordinates->tiles, *coordinates);
+		destroy_img(coordinates);
 		destroy_exit(coordinates);
 		destroy_monster(coordinates);
-		mlx_loop_end(coordinates->mlx); // if escape is pressed we stop the mlx_loop and so we continue in the main function
+		mlx_loop_end(coordinates->m);
 	}
 }

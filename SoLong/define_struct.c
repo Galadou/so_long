@@ -1,135 +1,83 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   define_struct.c                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: gmersch <gmersch@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/02/18 20:20:06 by gmersch           #+#    #+#             */
+/*   Updated: 2024/02/23 06:05:06 by gmersch          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "header.h"
 
-void    define_img(int img_height, int img_width, t_tiles *tiles, t_coordinates coordinates)
+void	define_img(t_coord *co)
 {
-	tiles->hall_H = mlx_png_file_to_image(coordinates.mlx, "tiles/front_back/hall_H.png", &img_width, &img_height);
-	tiles->hall_Z = mlx_png_file_to_image(coordinates.mlx, "tiles/front_back/hall_Z.png", &img_width, &img_height);
-	tiles->hall_X = mlx_png_file_to_image(coordinates.mlx, "tiles/hall_O.png", &img_width, &img_height);
-	tiles->hall_a = mlx_png_file_to_image(coordinates.mlx, "tiles/turn/hall_>.png", &img_width, &img_height);
-	tiles->hall_b = mlx_png_file_to_image(coordinates.mlx, "tiles/turn/hall_<.png", &img_width, &img_height);
-	tiles->hall_l = mlx_png_file_to_image(coordinates.mlx, "tiles/turn/hall_l.png", &img_width, &img_height);
-	tiles->hall_L = mlx_png_file_to_image(coordinates.mlx, "tiles/turn/hall_L.png", &img_width, &img_height);
-	tiles->hall_ = mlx_png_file_to_image(coordinates.mlx, "tiles/hall_t/_.png", &img_width, &img_height);
-	tiles->hall_7 = mlx_png_file_to_image(coordinates.mlx, "tiles/hall_t/7.png", &img_width, &img_height);
-	tiles->hall_K = mlx_png_file_to_image(coordinates.mlx, "tiles/hall_t/K.png", &img_width, &img_height);
-	tiles->hall_T = mlx_png_file_to_image(coordinates.mlx, "tiles/hall_t/T.png", &img_width, &img_height);
-	tiles->hall_U = mlx_png_file_to_image(coordinates.mlx, "tiles/u/U.png", &img_width, &img_height);
-	tiles->hall_c_left = mlx_png_file_to_image(coordinates.mlx, "tiles/u/].png", &img_width, &img_height);
-	tiles->hall_c = mlx_png_file_to_image(coordinates.mlx, "tiles/u/c.png", &img_width, &img_height);
-	tiles->hall_n = mlx_png_file_to_image(coordinates.mlx, "tiles/u/n.png", &img_width, &img_height);
-	tiles->wall = mlx_png_file_to_image(coordinates.mlx, "tiles/wall.png", &img_width, &img_height);
-	tiles->shadow = mlx_png_file_to_image(coordinates.mlx, "tiles/opacity.png", &img_width, &img_height);
-	tiles->hall_hide = mlx_png_file_to_image(coordinates.mlx, "tiles/hall_hide.png", &img_width, &img_height);
-}
-void    define_hero(int img_height, int img_width, t_tiles *tiles, t_coordinates coordinates)
-{
-	tiles->p_left = mlx_png_file_to_image(coordinates.mlx, "tiles/hero/p_left.png", &img_width, &img_height);
-    tiles->p_right = mlx_png_file_to_image(coordinates.mlx, "tiles/hero/p_right.png", &img_width, &img_height);
-    tiles->p_back = mlx_png_file_to_image(coordinates.mlx, "tiles/hero/p_back.png", &img_width, &img_height);
-    tiles->p_front = mlx_png_file_to_image(coordinates.mlx, "tiles/hero/p_front.png", &img_width, &img_height);
+	co->t.h_ = mlx_png_file_to_image(co->m, "t/H.png", &co->wi, &co->h);
+	co->t.z_ = mlx_png_file_to_image(co->m, "t/Z.png", &co->wi, &co->h);
+	co->t.x_ = mlx_png_file_to_image(co->m, "t/O.png", &co->wi, &co->h);
+	co->t.a = mlx_png_file_to_image(co->m, "t/>.png", &co->wi, &co->h);
+	co->t.b = mlx_png_file_to_image(co->m, "t/<.png", &co->wi, &co->h);
+	co->t.l = mlx_png_file_to_image(co->m, "t/l.png", &co->wi, &co->h);
+	co->t.l_ = mlx_png_file_to_image(co->m, "t/L.png", &co->wi, &co->h);
+	co->t._ = mlx_png_file_to_image(co->m, "t/_.png", &co->wi, &co->h);
+	co->t._7 = mlx_png_file_to_image(co->m, "t/7.png", &co->wi, &co->h);
+	co->t.k_ = mlx_png_file_to_image(co->m, "t/K.png", &co->wi, &co->h);
+	co->t.t_ = mlx_png_file_to_image(co->m, "t/T.png", &co->wi, &co->h);
+	co->t.u_ = mlx_png_file_to_image(co->m, "t/U.png", &co->wi, &co->h);
+	co->t.c_l = mlx_png_file_to_image(co->m, "t/].png", &co->wi, &co->h);
+	co->t.c = mlx_png_file_to_image(co->m, "t/c.png", &co->wi, &co->h);
+	co->t.n = mlx_png_file_to_image(co->m, "t/n.png", &co->wi, &co->h);
+	co->t.w = mlx_png_file_to_image(co->m, "t/wall.png", &co->wi, &co->h);
+	co->t.s = mlx_png_file_to_image(co->m, "t/opa.png", &co->wi, &co->h);
+	co->t.h = mlx_png_file_to_image(co->m, "t/hide.png", &co->wi, &co->h);
 }
 
-void	define_exit(t_coordinates *coordinates)
+void	def_hero(t_coord *c)
 {
-	coordinates->tiles.exit_door_close = mlx_png_file_to_image(coordinates->mlx, "tiles/exit/door/door_close.png", &coordinates->img_width, &coordinates->img_height);
-    coordinates->tiles.exit_door_open = mlx_png_file_to_image(coordinates->mlx, "tiles/exit/door/door_open.png", &coordinates->img_width, &coordinates->img_height);
-    coordinates->tiles.exit_door_smile = mlx_png_file_to_image(coordinates->mlx, "tiles/exit/door/door_open_smile.png", &coordinates->img_width, &coordinates->img_height);
-    coordinates->tiles.exit_trap_close = mlx_png_file_to_image(coordinates->mlx, "tiles/exit/trap/trap_close.png", &coordinates->img_width, &coordinates->img_height);
-    coordinates->tiles.exit_trap_open = mlx_png_file_to_image(coordinates->mlx, "tiles/exit/trap/trap_open.png", &coordinates->img_width, &coordinates->img_height);
-    coordinates->tiles.exit_trap_smile = mlx_png_file_to_image(coordinates->mlx, "tiles/exit/trap/trap_open_smile.png", &coordinates->img_width, &coordinates->img_height);
-}
-void	define_object(t_coordinates *coordinates)
-{
-	coordinates->tiles.obj_light = mlx_png_file_to_image(coordinates->mlx, "tiles/obj/TORCHE.png", &coordinates->img_width, &coordinates->img_height);
-	coordinates->tiles.obj_key = mlx_png_file_to_image(coordinates->mlx, "tiles/obj/cle.png", &coordinates->img_width, &coordinates->img_height);
-
-	coordinates->tiles.obj_t_bleu = mlx_png_file_to_image(coordinates->mlx, "tiles/obj/obj_tete_base/bleu.png", &coordinates->img_width, &coordinates->img_height);
-	coordinates->tiles.obj_t_grise = mlx_png_file_to_image(coordinates->mlx, "tiles/obj/obj_tete_base/grise.png", &coordinates->img_width, &coordinates->img_height);
-	coordinates->tiles.obj_t_jaune= mlx_png_file_to_image(coordinates->mlx, "tiles/obj/obj_tete_base/jaune.png", &coordinates->img_width, &coordinates->img_height);
-	coordinates->tiles.obj_t_vert = mlx_png_file_to_image(coordinates->mlx, "tiles/obj//obj_tete_base/vert.png", &coordinates->img_width, &coordinates->img_height);
-	coordinates->tiles.obj_t_sang = mlx_png_file_to_image(coordinates->mlx, "tiles/obj/obj_tete_base/sang.png", &coordinates->img_width, &coordinates->img_height);
-
-//ourson
-	coordinates->tiles.obj_beer_cub_brown = mlx_png_file_to_image(coordinates->mlx, "tiles/obj/ourson_brun.png", &coordinates->img_width, &coordinates->img_height);
-	coordinates->tiles.obj_beer_cub_blue = mlx_png_file_to_image(coordinates->mlx, "tiles/obj/ourson_bleu.png", &coordinates->img_width, &coordinates->img_height);
-	coordinates->tiles.obj_beer_cub_green = mlx_png_file_to_image(coordinates->mlx, "tiles/obj/ourson_vert.png", &coordinates->img_width, &coordinates->img_height);
-	coordinates->tiles.obj_beer_cub_korgeister = mlx_png_file_to_image(coordinates->mlx, "tiles/obj/ourson_shiny.png", &coordinates->img_width, &coordinates->img_height);
-	coordinates->tiles.obj_mask = mlx_png_file_to_image(coordinates->mlx, "tiles/obj/masque_Korgeister.png", &coordinates->img_width, &coordinates->img_height);
+	c->t.p_l = mlx_png_file_to_image(c->m, "t/p_l.png", &c->wi, &c->h);
+	c->t.p_r = mlx_png_file_to_image(c->m, "t/p_r.png", &c->wi, &c->h);
+	c->t.p_b = mlx_png_file_to_image(c->m, "t/p_b.png", &c->wi, &c->h);
+	c->t.p_f = mlx_png_file_to_image(c->m, "t/p_f.png", &c->wi, &c->h);
 }
 
-void	define_monster(t_coordinates *coordinates)
+void	define_exit(t_coord *c)
 {
-	coordinates->tiles.m_coil_front = mlx_png_file_to_image(coordinates->mlx, "tiles/Monster/coilhead_face.png", &coordinates->img_width, &coordinates->img_height);
-	coordinates->tiles.m_coil_front_left = mlx_png_file_to_image(coordinates->mlx, "tiles/Monster/coilhead_head_l.png", &coordinates->img_width, &coordinates->img_height);
-	coordinates->tiles.m_coil_front_right = mlx_png_file_to_image(coordinates->mlx, "tiles/Monster/coilhead_head_r.png", &coordinates->img_width, &coordinates->img_height);
-	coordinates->tiles.m_coil_back = mlx_png_file_to_image(coordinates->mlx, "tiles/Monster/coilhead_back.png", &coordinates->img_width, &coordinates->img_height);
-	coordinates->tiles.m_coil_back_left = mlx_png_file_to_image(coordinates->mlx, "tiles/Monster/coilhead_back_l.png", &coordinates->img_width, &coordinates->img_height);
-	coordinates->tiles.m_coil_back_right = mlx_png_file_to_image(coordinates->mlx, "tiles/Monster/coilhead_back_r.png", &coordinates->img_width, &coordinates->img_height);
-	coordinates->tiles.m_coil_left = mlx_png_file_to_image(coordinates->mlx, "tiles/Monster/coilhead_left.png", &coordinates->img_width, &coordinates->img_height);
-	coordinates->tiles.m_coil_right = mlx_png_file_to_image(coordinates->mlx, "tiles/Monster/coilhead_right.png", &coordinates->img_width, &coordinates->img_height);
-
-	coordinates->tiles.m_little_girl = mlx_png_file_to_image(coordinates->mlx, "tiles/Monster/little_girl.png", &coordinates->img_width, &coordinates->img_height);
+	c->t.d_c = mlx_png_file_to_image(c->m, "t/d_c.png", &c->wi, &c->h);
+	c->t.d_o = mlx_png_file_to_image(c->m, "t/d_o.png", &c->wi, &c->h);
+	c->t.d_os = mlx_png_file_to_image(c->m, "t/d_os.png", &c->wi, &c->h);
+	c->t.t_c = mlx_png_file_to_image(c->m, "t/t_c.png", &c->wi, &c->h);
+	c->t.t_o = mlx_png_file_to_image(c->m, "t/t_o.png", &c->wi, &c->h);
+	c->t.t_os = mlx_png_file_to_image(c->m, "t/t_os.png", &c->wi, &c->h);
 }
 
-void	define_player_look(t_coordinates *coordinates)
+void	define_object(t_coord *c)
 {
-	coordinates->player_look.up = 0;
-	coordinates->player_look.down = 0;
-	coordinates->player_look.left = 0;
-	coordinates->player_look.right = 0;
-}
-void	define_coilhead_go(t_coordinates *coordinates)
-{
-	coordinates->coilhead.go_up = 0;
-	coordinates->coilhead.go_left = 0;
-	coordinates->coilhead.go_down = 0;
-	coordinates->coilhead.go_right = 0;
+	c->t.o_l = mlx_png_file_to_image(c->m, "t/o_TO.png", &c->wi, &c->h);
+	c->t.o_k = mlx_png_file_to_image(c->m, "t/o_cle.png", &c->wi, &c->h);
+	c->t.o_t_b = mlx_png_file_to_image(c->m, "t/o_bleu.png", &c->wi, &c->h);
+	c->t.o_t_g = mlx_png_file_to_image(c->m, "t/o_grise.png", &c->wi, &c->h);
+	c->t.o_t_j = mlx_png_file_to_image(c->m, "t/o_jaune.png", &c->wi, &c->h);
+	c->t.o_t_v = mlx_png_file_to_image(c->m, "t/o_vert.png", &c->wi, &c->h);
+	c->t.o_t_s = mlx_png_file_to_image(c->m, "t/o_sang.png", &c->wi, &c->h);
+	c->t.o_b_br = mlx_png_file_to_image(c->m, "t/o_o_br.png", &c->wi, &c->h);
+	c->t.o_b_bl = mlx_png_file_to_image(c->m, "t/o_o_bl.png", &c->wi, &c->h);
+	c->t.o_b_g = mlx_png_file_to_image(c->m, "t/o_o_v.png", &c->wi, &c->h);
+	c->t.o_b_k = mlx_png_file_to_image(c->m, "t/o_o_s.png", &c->wi, &c->h);
+	c->t.o_m = mlx_png_file_to_image(c->m, "t/o_mK.png", &c->wi, &c->h);
 }
 
-void define_count(t_coordinates *coordinates)
+void	define_monster(t_coord *c)
 {
-		coordinates->nb_obj_take = 0;
-		coordinates->light = 0;
-		coordinates->bearKorgeister = 0;
-		coordinates->door_look_far = 0;
-		coordinates->exit_here = 0;
-		coordinates->nb_beer_cub_take = 0;
-		coordinates->nb_beer_cub = 0;
-		coordinates->nb_find_obj = 0;
-		coordinates->coilhead.y = 0;
-		coordinates->coilhead.x = 0;
-		coordinates->coilhead.see_coilhead = 0;
-		coordinates->coilhead.far_p_y = 0;
-		coordinates->coilhead.far_p_x = 0;
-		coordinates->coilhead.far_p_y_buf = 0;
-		coordinates->coilhead.far_p_x_buf= 0;
-		coordinates->coilhead.has_moove = 0;
-		coordinates->coilhead.frame = 0;
-		coordinates->coilhead.can_moove = 0;
-		coordinates->one_time = 0;
-		coordinates->i = 0;
-		coordinates->mid_second = 0;
-		coordinates->player_dead = 0;
-		coordinates->nb_moove = 0;
-		coordinates->string_count_moove = "0";
-}
-/*void define_search_p(t_coordinates *coordinates)
-{
-	coordinates->coilhead.h = coordinates->l * coordinates->c;
-	coordinates->coilhead.b = coordinates->l * coordinates->c;
-	coordinates->coilhead.g = coordinates->l * coordinates->c;
-	coordinates->coilhead.d = coordinates->l * coordinates->c;
-}*/
-void define_tab(t_coordinates *coordinates, char **argv)
-{
-	coordinates->tab.tab_0_1 = tab_creator(argv[1], coordinates->l, coordinates->c);
-	coordinates->tab.tab_dupp_coilhead_moove_up = tab_creator(argv[1], coordinates->l, coordinates->c);
-	coordinates->tab.tab_dupp_coilhead_moove_right = tab_creator(argv[1], coordinates->l, coordinates->c);
-	coordinates->tab.tab_dupp_coilhead_moove_left = tab_creator(argv[1], coordinates->l, coordinates->c);
-	coordinates->tab.tab_dupp_coilhead_moove_down = tab_creator(argv[1], coordinates->l, coordinates->c);
-	coordinates->tab.tab_dupp_coilhead_moove = tab_creator(argv[1], coordinates->l, coordinates->c);
-
-	coordinates->tab.tab_tiles = tab_creator(argv[1], coordinates->l, coordinates->c);
-	coordinates->tab.tab_dup_monsterspawn = tab_creator(argv[1], coordinates->l, coordinates->c);
-
+	c->t.m_c_f = mlx_png_file_to_image(c->m, "t/m_c_f.png", &c->wi, &c->h);
+	c->t.m_c_f_l = mlx_png_file_to_image(c->m, "t/m_c_h_l.png", &c->wi, &c->h);
+	c->t.m_c_f_r = mlx_png_file_to_image(c->m, "t/m_c_h_r.png", &c->wi, &c->h);
+	c->t.m_c_b = mlx_png_file_to_image(c->m, "t/m_c_b.png", &c->wi, &c->h);
+	c->t.m_c_b_l = mlx_png_file_to_image(c->m, "t/m_c_b_l.png", &c->wi, &c->h);
+	c->t.m_c_b_r = mlx_png_file_to_image(c->m, "t/m_c_b_r.png", &c->wi, &c->h);
+	c->t.m_c_l = mlx_png_file_to_image(c->m, "t/m_c_l.png", &c->wi, &c->h);
+	c->t.m_c_r = mlx_png_file_to_image(c->m, "t/m_c_r.png", &c->wi, &c->h);
+	c->t.m_monstre = mlx_png_file_to_image(c->m, \
+	"t/monstre.png", &c->wi, &c->h);
 }
