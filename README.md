@@ -1,7 +1,7 @@
 ![Screencast from 02-24-2024 01_15_02 AM](https://github.com/Galadou/so_long/assets/150854587/208feb9d-30cc-442a-b551-82731203aaf4)
 **So_Long Lethal Company by GMERSCH**
 
-
+**SOUND ACTIVE AND VERY IMPORTANT IN THIS GAME !!!**
 Key for playing :
   -W = go up,
   -A = go left,
