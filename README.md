@@ -15,7 +15,7 @@ Goal of the game :
 
 Find all the body/plush in the place. The Company put on top of the screen your mission of the day. DONT DIE. It will cost money to The Company.
 
-Video gameplay :
+****Video gameplay :****
 [Screencast from 02-24-2024 01:15:02 AM.webm](https://github.com/Galadou/so_long/assets/150854587/d3756d18-f61b-401d-b0ef-d17bd6cd08c0)
 
 Thanks for report bug, feeling or any idea at my discord : galadou
