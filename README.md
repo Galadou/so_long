@@ -16,7 +16,7 @@ Goal of the game :
 Find all the body/plush in the place. The Company put on top of the screen your mission of the day. DONT DIE. It will cost money to The Company.
 
 
-Thanks for report bug, feeling or any idea at my discord : Gala
+Thanks for report bug, feeling or any idea at my discord : galadou
 
 This litle game is a project named so_long, coming from the 42 school.
 Made in 180 hour and < 2k lines of codes.
