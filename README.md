@@ -2,6 +2,7 @@
 **So_Long Lethal Company by GMERSCH**
 
 **SOUND ACTIVE AND VERY IMPORTANT IN THIS GAME !!!**
+
 Key for playing :
   -W = go up,
   -A = go left,
