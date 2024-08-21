@@ -25,3 +25,5 @@ Thanks for report bug, feeling or any idea at my discord : galadou
 This little game is a project named so_long, coming from the 42 school.
 Made in 180 hour and < 2k lines of codes.
 (I'm a begginner in programming, sorry for the no optimized code)
+
+IF YOU USE WSL (linux for windows), IDK WHY SONG ISNT WORKING WELL... If you have any idea of how fix that, contact me on discord : galadou 
